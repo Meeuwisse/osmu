@@ -109,11 +109,5 @@ FILE *fmemopen(void *restrict buf, size_t size, const char *restrict mode)
 	f->seek = mseek;
 	f->close = mclose;
 
-	OFLLOCK();
-	f->next = libc.ofl_head;
-	if (libc.ofl_head) libc.ofl_head->prev = f;
-	libc.ofl_head = f;
-	OFLUNLOCK();
-
-	return f;
+	return __ofl_add(f);
 }

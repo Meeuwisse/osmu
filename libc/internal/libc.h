@@ -22,8 +22,6 @@ struct __libc {
 //	void (*ldso_fini)(void);
 //	volatile int threads_minus_1;
 //	int canceldisable;
-	FILE *ofl_head;
-	mutex_t ofl_lock;
 //	size_t tls_size;
 };
 

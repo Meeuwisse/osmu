@@ -51,13 +51,7 @@ FILE *__fdopen(int fd, const char *mode)
 	f->close = __stdio_close;
 
 	/* Add new FILE to open file list */
-	OFLLOCK();
-	f->next = libc.ofl_head;
-	if (libc.ofl_head) libc.ofl_head->prev = f;
-	libc.ofl_head = f;
-	OFLUNLOCK();
-
-	return f;
+	return __ofl_add(f);
 }
 
 weak_alias(__fdopen, fdopen);

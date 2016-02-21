@@ -78,11 +78,5 @@ FILE *open_memstream(char **bufp, size_t *sizep)
 	f->seek = ms_seek;
 	f->close = ms_close;
 
-	OFLLOCK();
-	f->next = libc.ofl_head;
-	if (libc.ofl_head) libc.ofl_head->prev = f;
-	libc.ofl_head = f;
-	OFLUNLOCK();
-
-	return f;
+	return __ofl_add(f);
 }

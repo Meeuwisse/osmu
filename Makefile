@@ -279,7 +279,7 @@ compiler-flag = $(shell $(CXX) $(CFLAGS_WERROR) $1 -o /dev/null -c $3  > /dev/nu
 
 compiler-specific := $(call compiler-flag, -std=gnu++11, -DHAVE_ATTR_COLD_LABEL, compiler/attr/cold-label.cc)
 
-source-dialects = -D_GNU_SOURCE
+source-dialects = #-D_GNU_SOURCE
 
 $(out)/bsd/%.o: source-dialects =
 
@@ -994,13 +994,16 @@ musl += ctype/__ctype_b_loc.o
 musl += errno/strerror.o
 libc += errno/strerror.o
 
+musl += locale/bind_textdomain_codeset.o
+musl += locale/dcngettext.o
+musl += locale/textdomain.o
 musl += locale/catclose.o
 musl += locale/catgets.o
 musl += locale/catopen.o
 libc += locale/duplocale.o
 libc += locale/freelocale.o
 musl += locale/iconv.o
-musl += locale/intl.o
+musl += locale/dcngettext.o
 libc += locale/isalnum_l.o
 libc += locale/isalpha_l.o
 libc += locale/isblank_l.o
@@ -1015,8 +1018,6 @@ libc += locale/isupper_l.o
 libc += locale/iswalnum_l.o
 libc += locale/iswalpha_l.o
 libc += locale/iswblank_l.o
-libc += locale/iswcntrl_l.o
-libc += locale/iswctype_l.o
 libc += locale/iswdigit_l.o
 libc += locale/iswgraph_l.o
 libc += locale/iswlower_l.o
@@ -1030,31 +1031,22 @@ libc += locale/langinfo.o
 musl += locale/localeconv.o
 libc += locale/nl_langinfo_l.o
 libc += locale/setlocale.o
-musl += locale/strcasecmp_l.o
 libc += locale/strcoll.o
 libc += locale/strcoll_l.o
-musl += locale/strerror_l.o
 libc += locale/strfmon.o
 libc += locale/strftime_l.o
-musl += locale/strncasecmp_l.o
 libc += locale/strtod_l.o
 libc += locale/strtof_l.o
 libc += locale/strtold_l.o
 libc += locale/strxfrm.o
 libc += locale/strxfrm_l.o
 libc += locale/tolower_l.o
-libc += locale/toupper_l.o
-musl += locale/towctrans_l.o
-libc += locale/towlower_l.o
-libc += locale/towupper_l.o
 libc += locale/uselocale.o
 libc += locale/wcscoll.o
 libc += locale/wcscoll_l.o
 libc += locale/wcsftime_l.o
 libc += locale/wcsxfrm.o
 libc += locale/wcsxfrm_l.o
-musl += locale/wctrans_l.o
-libc += locale/wctype_l.o
 
 musl += math/__cos.o
 musl += math/__cosdf.o
@@ -1310,6 +1302,19 @@ musl += multibyte/wctomb.o
 
 $(out)/libc/multibyte/mbsrtowcs.o: CFLAGS += -Imusl/src/multibyte
 
+musl += network/lookup_name.o
+musl += network/lookup_serv.o
+musl += network/lookup_ipliteral.o
+musl += network/dns_parse.o
+musl += network/dn_expand.o
+musl += network/resolvconf.o
+musl += network/res_init.o
+musl += network/res_query.o
+musl += network/res_querydomain.o
+musl += network/res_send.o
+musl += network/res_state.o
+musl += network/res_mkquery.o
+musl += network/res_msend.o
 libc += network/htonl.o
 libc += network/htons.o
 libc += network/ntohl.o
@@ -1341,6 +1346,7 @@ musl += network/getservbyport.o
 musl += network/getifaddrs.o
 musl += network/if_nameindex.o
 musl += network/if_freenameindex.o
+musl += network/netlink.o
 
 musl += prng/rand.o
 musl += prng/rand_r.o
@@ -1439,6 +1445,8 @@ musl += stdio/gets.o
 musl += stdio/getw.o
 musl += stdio/getwc.o
 musl += stdio/getwchar.o
+musl += stdio/ofl.o
+musl += stdio/ofl_add.o
 libc += stdio/open_memstream.o
 libc += stdio/open_wmemstream.o
 musl += stdio/perror.o
@@ -1674,6 +1682,7 @@ libc += linux/makedev.o
 
 ifneq ($(musl_arch), notsup)
 musl += fenv/fegetexceptflag.o
+musl += fenv/fesetround.o
 musl += fenv/feholdexcept.o
 musl += fenv/fesetexceptflag.o
 musl += fenv/$(musl_arch)/fenv.o
