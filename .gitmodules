@@ -48,3 +48,6 @@
 [submodule "external/fs/libnfs"]
 	path = external/fs/libnfs
 	url = https://github.com/sahlberg/libnfs.git
+[submodule "musl"]
+	path = musl
+	url = https://github.com/Meeuwisse/musl.git
