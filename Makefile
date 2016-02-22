@@ -327,7 +327,8 @@ tracing-flags = $(tracing-flags-$(conf-tracing))
 gcc-opt-Og := $(call compiler-flag, -Og, -Og, compiler/empty.cc)
 
 CXXFLAGS = -std=gnu++11 $(COMMON)
-CFLAGS = -std=gnu99 $(COMMON)
+# musl states FENV_ACCESS, however GCC doesn't know it
+CFLAGS = -std=gnu99 -frounding-math -Wno-unknown-pragmas $(COMMON)
 
 # should be limited to files under libc/ eventually
 CFLAGS += -I libc/stdio -I libc/internal -I libc/arch/$(arch) \
