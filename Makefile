@@ -353,6 +353,8 @@ $(out)/bsd/%.o: INCLUDES += -isystem bsd/
 # for machine/
 $(out)/bsd/%.o: INCLUDES += -isystem bsd/$(arch)
 
+INCLUDES += -isystem musl/src/internal -isystem musl/include
+
 configuration-defines = conf-preempt conf-debug_memory conf-logger_debug
 
 configuration = $(foreach cf,$(configuration-defines), \
