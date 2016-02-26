@@ -229,7 +229,7 @@ endif
 
 local-includes =
 INCLUDES = $(local-includes) -Iarch/$(arch) -I. -Iinclude -Iarch/common
-#INCLUDED += -Imusl/arch/x86_64 -Imusl/arch/generic
+INCLUDES += -Imusl/arch/x86_64 -Imusl/arch/generic
 INCLUDES += -isystem include/glibc-compat
 
 glibcbase = external/$(arch)/glibc.bin

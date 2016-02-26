@@ -5,6 +5,9 @@
  * BSD license as described in the LICENSE file in the top-level directory.
  */
 
+// musl doesn't define this
+#define MAP_UNINITIALIZED 0x4000000
+
 #include <sys/mman.h>
 #include <memory>
 #include <osv/mmu.hh>
