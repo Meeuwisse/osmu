@@ -1084,7 +1084,7 @@ void irq_resume(void)
 }
 
 void 
-evtchn_init(void *dummy __unused)
+evtchn_init(void *dummy __UNUSED)
 {
 	int i, cpu;
 	struct xenpic_intsrc *pin, *tpin;

@@ -378,7 +378,7 @@ xs_join(const char *dir, const char *name)
  * service has modified the queues.
  */
 static void
-xs_intr(void * arg __unused /*__attribute__((unused))*/)
+xs_intr(void * arg __UNUSED /*__attribute__((unused))*/)
 {
 
 	/*
@@ -701,7 +701,7 @@ xs_process_msg(enum xsd_sockmsg_type *type)
  * and processes and received messages.
  */
 void
-xs_rcv_thread(void *arg __unused)
+xs_rcv_thread(void *arg __UNUSED)
 {
 	int error;
 	enum xsd_sockmsg_type type;
