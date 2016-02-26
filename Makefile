@@ -226,10 +226,15 @@ else
     boost_env ?= external
 endif
 
+ifeq ($(arch),x64)
+musl_arch = x86_64
+else
+musl_arch = notsup
+endif
 
 local-includes =
 INCLUDES = $(local-includes) -Iarch/$(arch) -I. -Iinclude -Iarch/common
-INCLUDES += -Imusl/arch/x86_64 -Imusl/arch/generic
+INCLUDES += -Imusl/arch/$(musl_arch) -Imusl/arch/generic
 INCLUDES += -isystem include/glibc-compat
 
 glibcbase = external/$(arch)/glibc.bin
@@ -330,6 +335,10 @@ gcc-opt-Og := $(call compiler-flag, -Og, -Og, compiler/empty.cc)
 CXXFLAGS = -std=gnu++11 $(COMMON)
 # musl states FENV_ACCESS, however GCC doesn't know it
 CFLAGS = -std=gnu99 -frounding-math -Wno-unknown-pragmas $(COMMON)
+# silence false positive in res_msend.c
+CFLAGS += -Wno-maybe-uninitialized
+# silence false positive in getopt.c
+CFLAGS += -Wno-unused-value
 
 # should be limited to files under libc/ eventually
 CFLAGS += -I libc/stdio -I libc/internal -I libc/arch/$(arch) \
@@ -922,12 +931,6 @@ libc =
 musl =
 environ_libc =
 environ_musl =
-
-ifeq ($(arch),x64)
-musl_arch = x86_64
-else
-musl_arch = notsup
-endif
 
 libc += internal/_chk_fail.o
 libc += internal/floatscan.o
