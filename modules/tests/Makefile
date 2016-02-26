@@ -23,8 +23,8 @@ autodepend = -MD -MT $@ -MP
 
 INCLUDES = -I$(src)/arch/$(ARCH) -I$(src) -I$(src)/include \
 	-I$(src)/arch/common -isystem $(src)/include/glibc-compat \
-	-isystem $(src)/include/api -isystem $(src)/include/api/$(ARCH) \
-	-isystem $(out)/gen/include
+	-isystem $(src)/include/api -isystem $(src)/musl/include \
+	-isystem $(src)/include/api/$(ARCH) -isystem $(out)/gen/include
 
 COMMON = $(autodepend) $(INCLUDES) -g -O2 -fPIC -DBOOST_TEST_DYN_LINK \
 	-U _FORTIFY_SOURCE -D_KERNEL -D__OSV__ -DCONF_debug_memory=0 \

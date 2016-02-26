@@ -285,7 +285,7 @@ compiler-flag = $(shell $(CXX) $(CFLAGS_WERROR) $1 -o /dev/null -c $3  > /dev/nu
 
 compiler-specific := $(call compiler-flag, -std=gnu++11, -DHAVE_ATTR_COLD_LABEL, compiler/attr/cold-label.cc)
 
-source-dialects = #-D_GNU_SOURCE
+source-dialects = -D_GNU_SOURCE
 
 $(out)/bsd/%.o: source-dialects =
 
