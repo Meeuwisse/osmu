@@ -8,6 +8,9 @@
 #ifndef OSV_IOCTL_H
 #define OSV_IOCTL_H
 
+// musl doesn't export this
+#define SIOCSIFNAME 0x8923
+
 #include <sys/ioctl.h>
 
 #define _IOC_TYPE(x) (((x) >> 24) & 0xff)

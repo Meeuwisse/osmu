@@ -36,6 +36,8 @@
 #include <sys/cdefs.h>
 #include <sys/types.h>
 #include <sys/uio.h>
+// musl doesn't define this
+#define PAGE_SHIFT 12
 #include <limits.h>
 
 __BEGIN_DECLS
