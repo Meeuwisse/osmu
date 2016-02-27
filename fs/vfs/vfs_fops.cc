@@ -95,7 +95,7 @@ int vfs_file::write(struct uio *uio, int flags)
 	return error;
 }
 
-int vfs_file::ioctl(u_long com, void *data)
+int vfs_file::ioctl(int com, void *data)
 {
 	auto fp = this;
 	struct vnode *vp = fp->f_dentry->d_vnode;

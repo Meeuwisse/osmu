@@ -469,11 +469,11 @@ ssize_t writev(int fd, const struct iovec *iov, int iovcnt)
     return pwritev(fd, iov, iovcnt, -1);
 }
 
-TRACEPOINT(trace_vfs_ioctl, "%d 0x%x", int, unsigned long);
+TRACEPOINT(trace_vfs_ioctl, "%d 0x%x", int, int);
 TRACEPOINT(trace_vfs_ioctl_ret, "");
 TRACEPOINT(trace_vfs_ioctl_err, "%d", int);
 
-int ioctl(int fd, unsigned long int request, ...)
+int ioctl(int fd, int request, ...)
 {
     struct file *fp;
     int error;

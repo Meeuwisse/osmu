@@ -43,21 +43,21 @@
 #include <sys/time.h>
 #include <osv/mmu.hh>
 #include "libc/libc.hh"
-#include <api/sys/times.h>
+#include <sys/times.h>
 #include <map>
 #include <boost/range/adaptor/reversed.hpp>
 #include <osv/align.hh>
 #include <osv/stubbing.hh>
 #include "drivers/pvpanic.hh"
-#include <api/sys/resource.h>
-#include <api/math.h>
+#include <sys/resource.h>
+#include <math.h>
 #include <osv/shutdown.hh>
 #include <osv/execinfo.hh>
 #include <osv/demangle.hh>
 #include <processor.hh>
 #include <grp.h>
 #include <unordered_map>
-#include <api/sys/prctl.h>
+#include <sys/prctl.h>
 
 #define __LC_LAST 13
 

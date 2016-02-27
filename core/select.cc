@@ -11,7 +11,7 @@
 #include <signal.h>
 #include <osv/poll.h>
 #include <osv/debug.h>
-#include <api/sys/select.h>
+#include <sys/select.h>
 #include <bsd/porting/synch.h>
 
 #define select_d(...)  tprintf_d("select", __VA_ARGS__)
@@ -202,8 +202,6 @@ int pselect(int nfds, fd_set *readfds, fd_set *writefds,
     sigprocmask(SIG_SETMASK, &origmask, NULL);
     return ret;
 }
-
-#define NFDBITS (8 * sizeof(fd_mask))
 
 extern "C" unsigned long int
 __fdelt_chk (unsigned long int d)

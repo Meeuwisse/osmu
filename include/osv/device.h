@@ -65,7 +65,7 @@ typedef int (*devop_open_t)   (struct device *, int);
 typedef int (*devop_close_t)  (struct device *);
 typedef int (*devop_read_t)   (struct device *, struct uio *, int);
 typedef int (*devop_write_t)  (struct device *, struct uio *, int);
-typedef int (*devop_ioctl_t)  (struct device *, u_long, void *);
+typedef int (*devop_ioctl_t)  (struct device *, int, void *);
 typedef int (*devop_devctl_t) (struct device *, u_long, void *);
 typedef void (*devop_strategy_t)(struct bio *);
 

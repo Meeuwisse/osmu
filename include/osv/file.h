@@ -148,7 +148,7 @@ struct file {
 	virtual int read(struct uio *uio, int flags) = 0;
 	virtual int write(struct uio *uio, int flags) = 0;
 	virtual int truncate(off_t len) = 0;
-	virtual int ioctl(u_long com, void *data) = 0;
+	virtual int ioctl(int com, void *data) = 0;
 	virtual int poll(int events) = 0;
 	virtual int poll_sync(struct pollfd& pfd, timeout_t timeout) {
 		return poll_many(&pfd, 1, timeout);
@@ -199,7 +199,7 @@ struct special_file : public file {
     virtual int read(struct uio *uio, int flags) override;
     virtual int write(struct uio *uio, int flags) override;
     virtual int truncate(off_t len) override;
-    virtual int ioctl(u_long com, void *data) override;
+    virtual int ioctl(int com, void *data) override;
     virtual int poll(int events) override;
     virtual int stat(struct stat* buf) override;
     virtual int chmod(mode_t mode) override;

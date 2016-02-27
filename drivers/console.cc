@@ -64,7 +64,7 @@ void write_ll(const char *msg, size_t len)
 }
 
 static int
-console_ioctl(u_long request, void *arg)
+console_ioctl(int request, void *arg)
 {
     switch (request) {
     case TCGETS:
@@ -121,7 +121,7 @@ op_write(T *ignore, struct uio *uio, int ioflag)
 }
 
 template <class T> static int
-op_ioctl(T *ignore, u_long request, void *arg)
+op_ioctl(T *ignore, int request, void *arg)
 {
     return console_ioctl(request, arg);
 }
@@ -156,7 +156,7 @@ public:
     console_file() : tty_file(FREAD|FWRITE, DTYPE_UNSPEC) {}
     virtual int read(struct uio *uio, int flags) override;
     virtual int write(struct uio *uio, int flags) override;
-    virtual int ioctl(u_long com, void *data) override;
+    virtual int ioctl(int com, void *data) override;
     virtual int stat(struct stat* buf) override;
     virtual int close() override;
     virtual int poll(int events) override;
@@ -190,7 +190,7 @@ int console_file::write(struct uio *uio, int flags)
     return op_write<file>(this, uio, flags);
 }
 
-int console_file::ioctl(u_long com, void *data)
+int console_file::ioctl(int com, void *data)
 {
     return op_ioctl<file>(this, com, data);
 }

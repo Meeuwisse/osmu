@@ -93,7 +93,7 @@ int	 sys_read(struct file *fp, const struct iovec *iov, size_t niov,
 int	 sys_write(struct file *fp, const struct iovec *iov, size_t niov,
 		off_t offset, size_t *count);
 int	 sys_lseek(struct file *fp, off_t off, int type, off_t * cur_off);
-int	 sys_ioctl(struct file *fp, u_long request, void *buf);
+int	 sys_ioctl(struct file *fp, int request, void *buf);
 int	 sys_fstat(struct file *fp, struct stat *st);
 int	 sys_fstatfs(struct file *fp, struct statfs *buf);
 int	 sys_fsync(struct file *fp);

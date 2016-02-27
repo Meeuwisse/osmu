@@ -21,7 +21,7 @@ int special_file::truncate(off_t length)
     return EINVAL;
 }
 
-int special_file::ioctl(ulong comm, void* data)
+int special_file::ioctl(int comm, void* data)
 {
     /* ioctl() should return the anachronistically named ENOTTY when the request
      * does not apply to the object that the file descriptor refers to. If an

@@ -39,7 +39,7 @@
 #define _SYS_PARAM_H_
 
 #include <limits.h>
-#include <api/sys/param.h>
+#include "musl/include/sys/param.h"
 
 #define	BSD	199506		/* System version (year & month). */
 #define BSD4_3	1

@@ -16,7 +16,7 @@ public:
     virtual int read(struct uio *uio, int flags) override;
     virtual int write(struct uio *uio, int flags) override;
     virtual int truncate(off_t len) override;
-    virtual int ioctl(u_long com, void *data) override;
+    virtual int ioctl(int com, void *data) override;
     virtual int poll(int events) override;
     virtual int stat(struct stat* buf) override;
     virtual int close() override;

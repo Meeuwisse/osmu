@@ -275,7 +275,7 @@ long syscall(long number, ...)
     SYSCALL1(close, int);
     SYSCALL2(pipe2, int *, int);
     SYSCALL1(epoll_create1, int);
-    SYSCALL2(eventfd2, unsigned int, int);
+    SYSCALL2(eventfd, unsigned int, int);
     SYSCALL4(epoll_ctl, int, int, int, struct epoll_event *);
     SYSCALL4(epoll_wait, int, struct epoll_event *, int, int);
     SYSCALL4(accept4, int, struct sockaddr *, socklen_t *, int);

@@ -350,7 +350,7 @@ sys_lseek(struct file *fp, off_t off, int type, off_t *origin)
 }
 
 int
-sys_ioctl(struct file *fp, u_long request, void *buf)
+sys_ioctl(struct file *fp, int request, void *buf)
 {
 	int error;
 

@@ -11,7 +11,7 @@
 
 namespace zfsdev {
 
-extern "C" int osv_zfs_ioctl(unsigned long req, void* buffer);
+extern "C" int osv_zfs_ioctl(int req, void* buffer);
 
 struct zfs_device_priv {
     zfs_device* drv;
@@ -22,7 +22,7 @@ static zfs_device_priv *to_priv(device *dev)
     return reinterpret_cast<zfs_device_priv*>(dev->private_data);
 }
 
-static int zfs_ioctl(device* dev, ulong req, void* buffer)
+static int zfs_ioctl(device* dev, int req, void* buffer)
 {
     return osv_zfs_ioctl(req, buffer);
 }

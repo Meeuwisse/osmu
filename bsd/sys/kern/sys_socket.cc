@@ -59,7 +59,7 @@
 
 using namespace std;
 
-extern "C" int linux_ioctl_socket(socket_file *fp, u_long cmd, void *data) ;
+extern "C" int linux_ioctl_socket(socket_file *fp, int cmd, void *data) ;
 
 socket_file::socket_file(unsigned flags, socket* _so)
     : file(flags, DTYPE_SOCKET, _so)
@@ -145,7 +145,7 @@ static char get_ioctl_type(int ioctl)
 }
 
 int
-socket_file::ioctl(u_long cmd, void *data)
+socket_file::ioctl(int cmd, void *data)
 {
     return linux_ioctl_socket(this, cmd, data);
 }

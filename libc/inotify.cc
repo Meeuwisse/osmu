@@ -5,7 +5,7 @@
  * BSD license as described in the LICENSE file in the top-level directory.
  */
 
-#include <api/sys/inotify.h>
+#include <sys/inotify.h>
 #include <osv/stubbing.hh>
 #include "libc.hh"
 

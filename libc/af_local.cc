@@ -27,7 +27,7 @@ struct af_local final : public special_file {
     af_local(pipe_buffer_ref&& s, pipe_buffer_ref&& r)
             : special_file(FREAD|FWRITE, DTYPE_UNSPEC), send(std::move(s)), receive(std::move(r)) { init(); }
     void init();
-    virtual int ioctl(u_long com, void *data) override;
+    virtual int ioctl(int com, void *data) override;
     virtual int read(uio* data, int flags) override;
     virtual int write(uio* data, int flags) override;
     virtual int poll(int events) override;
@@ -37,7 +37,7 @@ struct af_local final : public special_file {
     pipe_buffer_ref receive;
 };
 
-int af_local::ioctl(u_long cmd, void *data)
+int af_local::ioctl(int cmd, void *data)
 {
     int error = ENOTTY;
     switch (cmd) {
