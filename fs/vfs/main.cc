@@ -427,8 +427,6 @@ ssize_t preadv(int fd, const struct iovec *iov, int iovcnt, off_t offset)
     return -1;
 }
 
-LFS64(preadv);
-
 ssize_t readv(int fd, const struct iovec *iov, int iovcnt)
 {
     return preadv(fd, iov, iovcnt, -1);
@@ -462,7 +460,6 @@ ssize_t pwritev(int fd, const struct iovec *iov, int iovcnt, off_t offset)
     errno = error;
     return -1;
 }
-LFS64(pwritev);
 
 ssize_t writev(int fd, const struct iovec *iov, int iovcnt)
 {
@@ -1216,8 +1213,6 @@ int __statfs(const char *pathname, struct statfs *buf)
 }
 weak_alias(__statfs, statfs);
 
-LFS64(statfs);
-
 TRACEPOINT(trace_vfs_fstatfs, "\"%s\" %p", int, struct statfs*);
 TRACEPOINT(trace_vfs_fstatfs_ret, "");
 TRACEPOINT(trace_vfs_fstatfs_err, "%d", int);
@@ -1248,8 +1243,6 @@ int __fstatfs(int fd, struct statfs *buf)
 }
 weak_alias(__fstatfs, fstatfs);
 
-LFS64(fstatfs);
-
 static int
 statfs_to_statvfs(struct statvfs *dst, struct statfs *src)
 {
@@ -1277,8 +1270,6 @@ statvfs(const char *pathname, struct statvfs *buf)
     return statfs_to_statvfs(buf, &st);
 }
 
-LFS64(statvfs);
-
 int
 fstatvfs(int fd, struct statvfs *buf)
 {
@@ -1288,9 +1279,6 @@ fstatvfs(int fd, struct statvfs *buf)
         return -1;
     return statfs_to_statvfs(buf, &st);
 }
-
-LFS64(fstatvfs);
-
 
 TRACEPOINT(trace_vfs_getcwd, "%p %d", char*, size_t);
 TRACEPOINT(trace_vfs_getcwd_ret, "\"%s\"", const char*);
@@ -1948,7 +1936,7 @@ int chmod(const char *pathname, mode_t mode)
         goto out_errno;
     if ((error = task_conv(t, pathname, VWRITE, path)) != 0)
         goto out_errno;
-    error = sys_chmod(path, mode & ALLPERMS);
+    error = sys_chmod(path, mode & 07777);
     if (error)
         goto out_errno;
     trace_vfs_chmod_ret();
@@ -1965,7 +1953,7 @@ TRACEPOINT(trace_vfs_fchmod_ret, "");
 int fchmod(int fd, mode_t mode)
 {
     trace_vfs_fchmod(fd, mode);
-    auto error = sys_fchmod(fd, mode & ALLPERMS);
+    auto error = sys_fchmod(fd, mode & 07777);
     trace_vfs_fchmod_ret();
     if (error) {
         errno = error;

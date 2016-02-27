@@ -1685,8 +1685,6 @@ libc += cpu_set.o
 libc += malloc_hooks.o
 libc += mallopt.o
 
-libc += linux/makedev.o
-
 ifneq ($(musl_arch), notsup)
 musl += fenv/fegetexceptflag.o
 musl += fenv/fesetround.o

@@ -37,6 +37,8 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <errno.h>
+
+#define S_BLKSIZE 512
 #include <sys/stat.h>
 
 #include <osv/prex.h>

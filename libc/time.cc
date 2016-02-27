@@ -21,7 +21,7 @@ u64 convert(const timespec& ts)
 }
 
 extern "C"
-int gettimeofday(struct timeval* tv, struct timezone* tz)
+int gettimeofday(struct timeval* tv, void* tz)
 {
     if (!tv) {
         return 0;
