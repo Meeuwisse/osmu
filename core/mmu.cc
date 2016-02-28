@@ -276,7 +276,9 @@ public:
     // page() function is called on leaf ptes. Each page table operation
     // have to provide its own version.
     template<int N>
-    bool page(hw_ptep<N> ptep, uintptr_t offset) { assert(0); }
+    bool page(hw_ptep<N> ptep, uintptr_t offset) {
+        abort("page not implemented");
+    }
     // if huge page range is covered by smaller pages some page table operations
     // may want to have special handling for level 1 non leaf pte. intermediate_page_pre()
     // is called just before descending into the next level, while intermediate_page_post()
@@ -758,7 +760,8 @@ public:
             auto old = ptep.read();
             auto v = phys_cast<u64*>(old.addr());
             for (unsigned i = 0; i < 512; ++i) {
-                assert(v[i] == 0);
+                if(v[i] != 0)
+                    abort("Page not clear");
             }
             ptep.write(make_empty_pte<1>());
             osv::rcu_defer([](void *page) { memory::free_page(page); }, phys_to_virt(old.addr()));

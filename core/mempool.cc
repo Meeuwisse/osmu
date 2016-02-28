@@ -1683,7 +1683,8 @@ void* malloc(size_t size, size_t alignment)
 
 void free(void* v)
 {
-    assert(!recursed);
+    if(recursed)
+        abort("free called recursively");
     recursed = true;
     auto unrecurse = defer([&] { recursed = false; });
     WITH_LOCK(memory::reclaimer_lock) {
@@ -1691,7 +1692,7 @@ void free(void* v)
         auto size = h->size;
         auto asize = align_up(size, mmu::page_size);
         char* vv = reinterpret_cast<char*>(v);
-        assert(std::all_of(vv + size, vv + asize, [=](char c) { return c == '$'; }));
+        if(!std::all_of(vv + size, vv + asize, [=](char c) { return c == '$'; })) abort("Failed to free");
         h->~header();
         mmu::vdepopulate(h, mmu::page_size);
         mmu::vdepopulate(v, asize);

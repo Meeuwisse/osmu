@@ -85,8 +85,8 @@ public:
         // interrupt's affinity to where the handling thread is. We should
         // probably do this here too.
         _msi.assign_isr(vec, handler);
-        auto ok = _msi.setup_entry(queue, vec);
-        assert(ok);
+        if(!_msi.setup_entry(queue, vec))
+            abort("Failed setup_entry");
         vec->msix_unmask_entries();
     }
 

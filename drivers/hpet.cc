@@ -117,7 +117,8 @@ hpetclock::hpetclock(uint64_t hpet_address)
     // Verify that a 64-bit counter is supported, and we're not forced to
     // operate in 32-bit mode (which has interrupt on every wrap-around).
     auto cap = mmio_getl(_addr + HPET_CAP);
-    assert(cap & HPET_CAP_COUNT_SIZE);
+    if(!(cap & HPET_CAP_COUNT_SIZE))
+        abort("Need 64 bit counter");
 
     unsigned int cfg = mmio_getl(_addr + HPET_CONFIG);
     // Stop the HPET First, so we can make sure the counter is at 0 when we
@@ -128,7 +129,8 @@ hpetclock::hpetclock(uint64_t hpet_address)
 
     _period = mmio_getl(_addr + HPET_PERIOD);
     // Hpet has its period presented in femtoseconds.
-    assert((_period >= MIN_PERIOD) && (_period <= MAX_PERIOD));
+    if(_period < MIN_PERIOD || _period > MAX_PERIOD)
+        abort("Period out of range");
     _period /= 1000000UL; // nanoseconds
 
     // In theory we should disable NMIs, but on virtual hardware, we can

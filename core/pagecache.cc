@@ -394,7 +394,8 @@ static std::unique_ptr<cached_page_write> create_write_cached_page(vfs_file* fp,
     cached_page_write* cp = new cached_page_write(key, fp);
     struct iovec iov {cp->addr(), mmu::page_size};
 
-    assert(sys_read(fp, &iov, 1, key.offset, &bytes) == 0);
+    if(sys_read(fp, &iov, 1, key.offset, &bytes) != 0)
+        abort("Failed to create write cached page");
     return std::unique_ptr<cached_page_write>(cp);
 }
 

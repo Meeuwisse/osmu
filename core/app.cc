@@ -211,8 +211,7 @@ int application::join()
         throw multiple_join_error();
     }
     trace_app_join(this);
-    auto err = pthread_join(_thread, NULL);
-    assert(!err);
+    if(pthread_join(_thread, NULL)) abort ("Join failed");
 
     _joiner = sched::thread::current();
     _runtime.reset();

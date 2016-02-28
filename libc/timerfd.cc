@@ -83,7 +83,7 @@ void timerfd::set_timer(sched::timer &tmr, s64 t)
         tmr.set(uptime::time_point(std::chrono::nanoseconds(t)));
         break;
     default:
-        assert(false);
+        abort("Invalid id");
     }
 }
 
@@ -98,7 +98,7 @@ s64 timerfd::time_now() const
         return duration_cast<nanoseconds>(
                 osv::clock::uptime::now().time_since_epoch()).count();
     default:
-        assert(false);
+        abort("Invalid id");
     }
 }
 

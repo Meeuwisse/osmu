@@ -1725,7 +1725,8 @@ xb_startio(struct xb_softc *sc)
     bf_softc *xsc = reinterpret_cast<bf_softc *>(sc);
     int error, queued = 0;
 
-    assert(mutex_owned(&xsc->xb_io_lock));
+    if(!mutex_owned(&xsc->xb_io_lock))
+        abort("xb_startio should've already owned the lock");
 
     if (sc->connected != BLKIF_STATE_CONNECTED)
         return;

@@ -42,7 +42,8 @@ void parse_madt()
     char madt_sig[] = ACPI_SIG_MADT;
     ACPI_TABLE_HEADER* madt_header;
     auto st = AcpiGetTable(madt_sig, 0, &madt_header);
-    assert(st == AE_OK);
+    if(st != AE_OK)
+	abort("parse_madt failure to get ACPI table");
     auto madt = get_parent_from_member(madt_header, &ACPI_TABLE_MADT::Header);
     void* subtable = madt + 1;
     void* madt_end = static_cast<void*>(madt) + madt->Header.Length;

@@ -218,14 +218,12 @@ void port::wait_cmd_poll(u8 slot)
             wait_ci_ready(slot);
 
            if (is & 0x02) {
-               auto error  = _recv_fis->psfis[3];
-               assert(!error);
+               if(_recv_fis->psfis[3]) abort("poll failed");
                break;
            }
 
            if (is & 0x01) {
-               auto error  = recv_fis_error();
-               assert(!error);
+               if(recv_fis_error()) abort("recv_fis failed");
                break;
             }
         }
@@ -582,8 +580,7 @@ bool hba::ack_irq()
         auto is = port->port_readl(PORT_IS);
         port->port_writel(PORT_IS, is);
 
-        u8 error = port->recv_fis_error();
-        assert (error == 0);
+        if(port->recv_fis_error()) abort("recv_fis failed");
         if ((is & 1)) {
             port->wakeup();
             handled = true;

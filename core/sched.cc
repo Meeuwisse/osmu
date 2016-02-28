@@ -599,7 +599,8 @@ void thread::yield(thread_runtime::duration preempt_after)
     if (cpu::current()->runqueue.empty()) {
         return;
     }
-    assert(t->_detached_state->st.load() == status::running);
+    if(t->_detached_state->st.load() != status::running)
+        abort("Can't yield to non-running");
     // Do not yield to a thread with idle priority
     thread &tnext = *(cpu::current()->runqueue.begin());
     if (tnext.priority() == thread::priority_idle) {

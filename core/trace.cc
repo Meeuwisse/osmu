@@ -936,7 +936,8 @@ trace::create_trace_dump()
                         break;
                     }
 
-                    assert(is_valid_tracepoint(tr->tp));
+                    if(!is_valid_tracepoint(tr->tp))
+                        abort("Not valid");
 
                     out.twrite<trace_record>(s);
 

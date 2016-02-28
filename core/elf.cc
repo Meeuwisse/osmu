@@ -617,7 +617,7 @@ void object::relocate_pltgot()
         // of the actual function. We'll need to return the link to the .PLT.
         // The prelinker saved us in pltgot[1] the address of .plt + 0x16.
 #ifdef AARCH64_PORT_STUB
-        assert(0);
+        abort("Unimplemented");
 #endif /* AARCH64_PORT_STUB */
         original_plt = static_cast<void*>(_base + (u64)pltgot[1]);
     }
@@ -628,7 +628,8 @@ void object::relocate_pltgot()
     for (auto p = rel; p < rel + nrel; ++p) {
         auto info = p->r_info;
         u32 type = info & 0xffffffff;
-        assert(type == ARCH_JUMP_SLOT);
+        if(type != ARCH_JUMP_SLOT)
+            abort("Failed to locate data");
         void *addr = _base + p->r_offset;
         if (bind_now) {
             // If on-load binding is requested (instead of the default lazy
@@ -667,7 +668,8 @@ void* object::resolve_pltgot(unsigned index)
     auto info = slot.r_info;
     u32 sym = info >> 32;
     u32 type = info & 0xffffffff;
-    assert(type == ARCH_JUMP_SLOT);
+    if(type != ARCH_JUMP_SLOT)
+        abort("Failed to locate data");
     void *addr = _base + slot.r_offset;
     auto sm = symbol(sym);
 

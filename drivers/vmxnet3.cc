@@ -159,7 +159,8 @@ static void if_getinfo(struct ifnet* ifp, struct if_data* out_data)
 
 void vmxnet3::fill_stats(struct if_data* out_data) const
 {
-    assert(!out_data->ifi_oerrors && !out_data->ifi_obytes && !out_data->ifi_opackets);
+    if(out_data->ifi_oerrors || out_data->ifi_obytes || out_data->ifi_opackets)
+        abort("Can't fill non-empty struct");
     out_data->ifi_ipackets += _rxq[0].stats.rx_packets;
     out_data->ifi_ibytes   += _rxq[0].stats.rx_bytes;
     out_data->ifi_iqdrops  += _rxq[0].stats.rx_drops;
@@ -297,7 +298,8 @@ vmxnet3::vmxnet3(pci::device &dev)
     parse_pci_config();
     _dev.set_bus_master(true);
     _dev.msix_enable();
-    assert(dev.is_msix());
+    if(!dev.is_msix())
+        abort("Failed to enable msix");
     stop();
     vmxnet3_i("VMXNET3 INSTANCE");
     _id = _instance++;
@@ -596,7 +598,8 @@ void vmxnet3_txqueue::encap(vmxnet3_req *req)
     auto m_head = req->mb;
     auto start = req->start;
 
-    assert(_buf[txr.head] == NULL);
+    if(_buf[txr.head] != NULL)
+        abort("Failed to encap");
     _buf[txr.head] = m_head;
     for (auto m = m_head; m != NULL; m = m->m_hdr.mh_next) {
         int frag_len = m->m_hdr.mh_len;
@@ -798,7 +801,8 @@ void vmxnet3_rxqueue::receive()
 
     while(1) {
         auto rxcd = rxc.get_desc(rxc.next);
-        assert(rxcd->layout->qid <= 2);
+        if(rxcd->layout->qid > 2)
+            abort("Unknown qid");
 
         if (rxcd->layout->gen != rxc.gen)
             break;
@@ -816,7 +820,8 @@ void vmxnet3_rxqueue::receive()
         auto rxd = rxr.get_desc(idx);
         auto m = _buf[rid][idx];
 
-        assert(m != NULL);
+        if(m == NULL)
+            abort("Couldn't locate buffer");
 
         if (rxr.fill != idx) {
             while(rxr.fill != idx) {
@@ -831,9 +836,8 @@ void vmxnet3_rxqueue::receive()
         }
 
         if (rxcd->layout->sop) {
-            assert(rxd->layout->btype == btype::head);
-            assert((idx % 1) == 0);
-            assert(_m_currpkt_head == nullptr);
+            if(rxd->layout->btype != btype::head || (idx % 1) != 0 || _m_currpkt_head != nullptr)
+                abort("sop layout mismatch");
 
             if (length == 0) {
                 discard(rid, idx);
@@ -848,8 +852,8 @@ void vmxnet3_rxqueue::receive()
             m->m_hdr.mh_len = length;
             _m_currpkt_head = _m_currpkt_tail = m;
         } else {
-            assert(rxd->layout->btype == btype::body);
-            assert(_m_currpkt_head != nullptr);
+            if(rxd->layout->btype != btype::body || _m_currpkt_head == nullptr)
+                abort("Couldn't locate body");
 
             newbuf(rid);
 
@@ -879,7 +883,8 @@ bool vmxnet3_rxqueue::available()
 {
     auto &rxc = _comp_ring;
     auto rxcd = rxc.get_desc(rxc.next);
-    assert(rxcd->layout->qid <= 2);
+    if(rxcd->layout->qid > 2)
+        abort("qid not available");
 
     return (rxcd->layout->gen == rxc.gen);
 }
