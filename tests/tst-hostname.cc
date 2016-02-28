@@ -5,6 +5,7 @@
  * BSD license as described in the LICENSE file in the top-level directory.
  */
 // To compile on Linux, use: g++ -g -pthread -std=c++11 tests/tst-hostname.cc
+#include "missing.h"
 
 #include <unistd.h>
 #include <sys/utsname.h>

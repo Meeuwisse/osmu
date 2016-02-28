@@ -6,6 +6,7 @@
  */
 
 #define BOOST_TEST_MODULE tst-seek
+#include "missing.h"
 
 #include <boost/test/unit_test.hpp>
 #include <sys/types.h>

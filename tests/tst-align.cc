@@ -10,6 +10,7 @@
 // memory allocated by them.
 //
 // To compile on Linux, use: g++ -g -pthread -std=c++11 tests/tst-align.cc
+#include "missing.h"
 
 
 #include <string>

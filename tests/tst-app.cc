@@ -6,6 +6,7 @@
  */
 
 #define BOOST_TEST_MODULE tst-app
+#include "missing.h"
 
 #include <iostream>
 #include <thread>

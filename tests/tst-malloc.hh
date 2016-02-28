@@ -7,6 +7,7 @@
 
 #ifndef __TST_MALLOC__
 #define __TST_MALLOC__
+#include "missing.h"
 
 #include <osv/mutex.h>
 #include <osv/sched.hh>

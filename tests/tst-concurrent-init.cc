@@ -7,6 +7,7 @@
 
 // Test concurrent initialization of function-static varibles.
 // Gcc implements this using __cxa_guard_acquire().
+#include "missing.h"
 
 #include <iostream>
 #include <chrono>

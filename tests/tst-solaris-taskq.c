@@ -9,6 +9,7 @@
  * Test the solaris taskq interface.
  * As a benefit also exercises the kcondvar and kmutex wrappers.
  */
+#include "missing.h"
 
 #include <bsd/porting/netport.h>
 #include <sys/taskq.h>

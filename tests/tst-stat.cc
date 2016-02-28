@@ -6,6 +6,7 @@
  */
 
 #define BOOST_TEST_MODULE tst-stat
+#include "missing.h"
 
 #include "tst-fs.hh"
 

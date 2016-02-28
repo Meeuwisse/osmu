@@ -6,6 +6,7 @@
  */
 
 #define BOOST_TEST_MODULE tst-libc-locking
+#include "missing.h"
 
 #include <stdio.h>
 #include <iostream>

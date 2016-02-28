@@ -6,6 +6,7 @@
  */
 
 #define BOOST_TEST_MODULE tst-dlfcn
+#include "missing.h"
 
 #include <dlfcn.h>
 

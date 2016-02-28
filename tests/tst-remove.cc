@@ -7,6 +7,7 @@
 
 // This test can be run on either OSv or Linux. To compile for Linux, use
 // c++ -std=c++11 tests/tst-remove.cc
+#include "missing.h"
 
 #include <sys/stat.h>
 #include <sys/types.h>

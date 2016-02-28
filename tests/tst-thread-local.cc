@@ -11,6 +11,7 @@
 //
 // To compile on Linux, use: g++ -g -pthread -std=c++11 tst-thread-local.cc
 
+#include "missing.h"
 
 #include <string>
 #include <iostream>

@@ -7,6 +7,7 @@
 
 #ifndef __UNIT_TESTS__
 #define __UNIT_TESTS__
+#include "missing.h"
 
 #include <list>
 

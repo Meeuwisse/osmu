@@ -70,6 +70,8 @@ TYPEDEF unsigned long uintmax_t;
 TYPEDEF float float_t;
 TYPEDEF double double_t;
 
+TYPEDEF struct { long long __ll; long double __ld; } max_align_t;
+
 TYPEDEF long time_t;
 TYPEDEF long suseconds_t;
 TYPEDEF unsigned useconds_t;

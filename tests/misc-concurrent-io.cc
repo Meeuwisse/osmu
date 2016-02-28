@@ -18,6 +18,7 @@
 //    make image=tests
 //    scripts/run.py -e "tests/misc-concurrent-io.so setup"
 //    scripts/run.py -e "tests/misc-concurrent-io.so <operation>"
+#include "missing.h"
 
 #include <sys/types.h>
 #include <fcntl.h>

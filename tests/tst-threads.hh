@@ -7,6 +7,7 @@
 
 #ifndef __TST_THREADS__
 #define __TST_THREADS__
+#include "missing.h"
 
 #include "tst-hub.hh"
 #include <osv/sched.hh>

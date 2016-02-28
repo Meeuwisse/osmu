@@ -15,6 +15,7 @@
  * buffers are full. TIOCOUTQ shall return value set by the setsockopt on the client
  * socket. If it is true the test passes. If it not true - it fails.
  */
+#include "missing.h"
 
 #include <sys/types.h>
 #include <sys/socket.h>

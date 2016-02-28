@@ -8,6 +8,7 @@
 // Tests for printf() and related functions.
 //
 // To compile on Linux, use: g++ -g -std=c++11 tst-printf.cc
+#include "missing.h"
 
 
 #include <string>

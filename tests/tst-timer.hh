@@ -7,6 +7,7 @@
 
 #ifndef __TST_TIMER__
 #define __TST_TIMER__
+#include "missing.h"
 
 #include "tst-hub.hh"
 #include "drivers/clock.hh"

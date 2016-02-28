@@ -21,6 +21,7 @@
 //    real bug in the algorithm and not a bug in osv's thread or
 //    synchronization mechanisms. To compile this test in Linux, run:
 //    g++ -g -std=c++11 -DLINUX -I ../include tst-queue-mpsc.cc -lstdc++ -lpthread
+#include "missing.h"
 
 #include "lockfree/queue-mpsc.hh"
 

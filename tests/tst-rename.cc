@@ -9,6 +9,7 @@
 // c++ -std=c++11 -DBOOST_TEST_DYN_LINK tst-rename.cc -lboost_unit_test_framework -lboost_filesystem -lboost_system
 
 #define BOOST_TEST_MODULE tst-rename
+#include "missing.h"
 
 #include <boost/filesystem.hpp>
 #include <boost/filesystem/fstream.hpp>

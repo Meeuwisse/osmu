@@ -14,6 +14,7 @@
 // Passing this test doesn't mean it works, but failing means it doesn't.
 // Unfortunately there are no checks to be done here.  Failure will manifest in
 // this crashing or hanging.
+#include "missing.h"
 
 #include <sys/types.h>
 #include <thread>

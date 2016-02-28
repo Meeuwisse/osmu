@@ -11,6 +11,7 @@
 // which introduce various limitations and bugs which this test tries to
 // reproduce (this test can be compiled on both Linux and OSv, to allow
 // comparing their behavior).
+#include "missing.h"
 
 #include <sys/socket.h>
 #include <sys/poll.h>

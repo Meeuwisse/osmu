@@ -6,6 +6,7 @@
  */
 
 #define BOOST_TEST_MODULE tst-unordered-ring-mpsc
+#include "missing.h"
 
 #include <boost/test/unit_test.hpp>
 

@@ -6,6 +6,7 @@
  */
 
 // Test for sigwait
+#include "missing.h"
 
 #include <sys/types.h>
 #include <signal.h>

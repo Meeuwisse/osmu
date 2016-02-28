@@ -62,6 +62,8 @@
 //    they all start on the same CPU and the load balancer might not migrate
 //    them right away.
 
+#include "missing.h"
+
 #include <thread>
 #include <chrono>
 #include <iostream>

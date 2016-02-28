@@ -6,6 +6,7 @@
  */
 
 // To compile on Linux, use: g++ -g -pthread -std=c++11 tst-regex.cc
+#include "missing.h"
 
 #include <iostream>
 

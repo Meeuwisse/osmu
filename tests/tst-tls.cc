@@ -8,6 +8,7 @@
 // To compile on Linux, use:
 //     g++ -g -fPIC -shared -std=c++11 libtls.cc -o libtls.so
 //     g++ -g -pthread -std=c++11 tst-tls.cc libtls.so -Wl,-R.
+#include "missing.h"
 
 #include <iostream>
 #include <thread>

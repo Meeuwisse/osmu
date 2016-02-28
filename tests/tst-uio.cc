@@ -10,6 +10,7 @@
 // the iovecs it got (zeroing their lengths) in complete violation of the
 // const-ness of these structures. This bug also caused fread() to return
 // garbage, so we also test fread() here.
+#include "missing.h"
 
 #include <sys/stat.h>
 #include <fcntl.h>

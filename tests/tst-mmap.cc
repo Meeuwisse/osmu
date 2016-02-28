@@ -7,6 +7,7 @@
 
 // To compile this test on Linux, use:
 // g++ -g -pthread -std=c++11 -Wno-pointer-arith tests/tst-mmap.cc
+#include "missing.h"
 
 #include "tst-mmap.hh"
 

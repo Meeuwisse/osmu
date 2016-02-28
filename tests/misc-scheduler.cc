@@ -21,6 +21,7 @@
 //    We expect to see that each receives the same share - 50% - of the CPU,
 //    i.e., both threads finish together after x2 the time of the tight loop
 //    would take alone.
+#include "missing.h"
 
 #include <thread>
 #include <chrono>

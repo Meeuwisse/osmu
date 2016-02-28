@@ -6,6 +6,7 @@
  */
 
 #define BOOST_TEST_MODULE tst-promise
+#include "missing.h"
 
 #include <future>
 #include <thread>

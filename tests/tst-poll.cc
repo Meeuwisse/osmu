@@ -10,6 +10,7 @@
  */
 
 #define BOOST_TEST_MODULE tst-poll
+#include "missing.h"
 
 #include <thread>
 #include <poll.h>

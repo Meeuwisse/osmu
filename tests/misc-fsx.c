@@ -19,6 +19,7 @@
  *
  *	Checks for mmap last-page zero fill.
  */
+#include "missing.h"
 
 #include <limits.h>
 #include <time.h>

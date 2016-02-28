@@ -23,6 +23,7 @@
 // To run this benchmark on Linux:
 //    g++ -g -pthread -std=c++11 tests/misc-setpriority.cc
 //    sudo taskset 1 ./a.out
+#include "missing.h"
 
 #include <thread>
 #include <chrono>

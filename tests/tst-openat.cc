@@ -1,3 +1,4 @@
+#include "missing.h"
 #include <stdio.h>
 #include <sys/types.h>
 #include <sys/stat.h>

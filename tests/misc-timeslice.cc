@@ -16,6 +16,7 @@
 // To run on osv:
 //    make image=tests
 //    scripts/run.py -c1 -e tests/misc-timeslice.so
+#include "missing.h"
 
 #include <thread>
 #include <chrono>

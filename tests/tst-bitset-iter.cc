@@ -6,6 +6,7 @@
  */
 
 #define BOOST_TEST_MODULE tst-bitset-iter
+#include "missing.h"
 
 #include <osv/bitset-iter.hh>
 #include <boost/test/unit_test.hpp>

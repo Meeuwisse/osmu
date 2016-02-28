@@ -6,6 +6,7 @@
  */
 
 #define BOOST_TEST_MODULE tst-bsd-tcp1-zsnd
+#include "missing.h"
 
 #include <boost/test/unit_test.hpp>
 

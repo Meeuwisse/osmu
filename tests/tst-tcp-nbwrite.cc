@@ -17,6 +17,7 @@
  * O_NONBLOCK, it does write some of the output, but erroneously returned -1,
  * not the partial write's size.
  */
+#include "missing.h"
 
 #include <sys/types.h>
 #include <sys/socket.h>

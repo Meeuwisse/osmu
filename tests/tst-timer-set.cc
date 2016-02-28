@@ -10,6 +10,7 @@
  */
 
 #define BOOST_TEST_MODULE tst-timer-set
+#include "missing.h"
 
 #include <chrono>
 #include <unordered_set>

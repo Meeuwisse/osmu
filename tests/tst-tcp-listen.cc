@@ -6,6 +6,7 @@
  */
 
 #define BOOST_TEST_MODULE tst-tcp-listen
+#include "missing.h"
 
 #include <vector>
 #include <thread>

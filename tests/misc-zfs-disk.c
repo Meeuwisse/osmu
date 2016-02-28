@@ -32,6 +32,8 @@
  * Copyright 2011 Nexenta Systems, Inc.  All rights reserved.
  * Copyright (c) 2012 Martin Matuska <mm@FreeBSD.org>.  All rights reserved.
  */
+#include "missing.h"
+
 #include <sys/zfs_context.h>
 #include <sys/spa.h>
 #include <sys/dmu.h>

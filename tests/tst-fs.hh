@@ -7,6 +7,7 @@
 
 #ifndef _TST_FS_HH
 #define _TST_FS_HH
+#include "missing.h"
 
 #include <sys/types.h>
 #include <sys/stat.h>

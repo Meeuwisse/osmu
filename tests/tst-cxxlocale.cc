@@ -18,6 +18,7 @@
 // basically this test verifies it is indeed compatible enough.
 //
 // To compile on Linux, use: g++ -g -pthread -std=c++11 tests/tst-cxxlocale.cc
+#include "missing.h"
 
 
 #include <string>

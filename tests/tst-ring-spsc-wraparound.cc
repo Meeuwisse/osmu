@@ -9,6 +9,7 @@
  * This test checks that ring_spsc push() continues to work after the internal
  * counter wraps around (issue #225)
  */
+#include "missing.h"
 
 #include <lockfree/ring.hh>
 #include <iostream>

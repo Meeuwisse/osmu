@@ -6,6 +6,7 @@
  */
 
 #define BOOST_TEST_MODULE tst-async
+#include "missing.h"
 
 #include <osv/async.hh>
 #include <osv/clock.hh>

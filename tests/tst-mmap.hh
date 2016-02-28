@@ -9,6 +9,7 @@
 
 #ifndef _TST_MMAP_HH
 #define _TST_MMAP_HH
+#include "missing.h"
 
 #include <sys/mman.h>
 #include <signal.h>

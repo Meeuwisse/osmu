@@ -7,6 +7,7 @@
 
 // strerror_r() changes its behavior depending on the source
 // dialect, test to make sure we get the right one.
+#include "missing.h"
 
 #include <boost/system/error_code.hpp>
 #include <string>

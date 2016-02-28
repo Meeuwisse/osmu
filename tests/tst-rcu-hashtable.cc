@@ -6,6 +6,7 @@
  */
 
 #define BOOST_TEST_MODULE tst-rcu-hashtable
+#include "missing.h"
 
 #include <boost/test/unit_test.hpp>
 #include <osv/rcu-hashtable.hh>

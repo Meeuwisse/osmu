@@ -9,6 +9,8 @@
 // Same as an Echo server but more practical to validate correctness of
 // recieved / transmitted data. Uses TCP.
 //
+#include "missing.h"
+
 #include <osv/debug.hh>
 #include <osv/sched.hh>
 #include <string>

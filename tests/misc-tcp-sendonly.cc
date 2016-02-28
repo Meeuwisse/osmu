@@ -14,6 +14,8 @@
 // $ sudo service firewalld stop
 // $ nc -l -p 9999
 //
+#include "missing.h"
+
 #include <osv/debug.hh>
 #include <string>
 

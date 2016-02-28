@@ -8,6 +8,7 @@
 // Tests for various fcntl() issues behave as they do on Linux.
 //
 // To compile on Linux, use: c++ -g -pthread -std=c++11 tst-fcntl.cc
+#include "missing.h"
 
 
 #include <string>

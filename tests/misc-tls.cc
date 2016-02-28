@@ -14,6 +14,7 @@
 // uses the "global dynamic" TLS model and every TLS access becomes a call
 // to the __tls_get_addr function - but here we want to test just how slow
 // it is.
+#include "missing.h"
 
 #include <chrono>
 #include <iostream>

@@ -6,6 +6,7 @@
  */
 
 // Test for kill() and alarm() approximations in libc/signal.cc
+#include "missing.h"
 
 #include <sys/types.h>
 #include <signal.h>
